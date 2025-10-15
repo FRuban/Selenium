@@ -7,11 +7,13 @@ import time
 driver = webdriver.Chrome()
 driver.get("https://duckduckgo.com/")
 driver.maximize_window()
+
 a = driver.find_element(By.XPATH, '//*[@id="searchbox_input"]')
 time.sleep(2)
 a.send_keys("Flipkart")
 a.send_keys(Keys.RETURN)
 time.sleep(2)
+
 b = driver.find_element(By.XPATH,'//*[@id="r1-0"]/div[3]/h2/a/span')
 b.click()
 time.sleep(2)
@@ -21,21 +23,15 @@ c.send_keys("5g Mobiles")
 c.send_keys(Keys.RETURN)
 time.sleep(2)
 
-results = driver.find_elements(By.CLASS_NAME, 'CGtC98')
+d = driver.find_elements(By.CLASS_NAME, 'CGtC98')
 
-if results:
-    random_result = random.choice(results)
-    driver.execute_script("arguments[0].scrollIntoView();", random_result)
-    random_result.click()
+if d:
+    e = random.choice(d)
+    driver.execute_script("arguments[0].scrollIntoView();", e)
+    e.click()
     time.sleep(5)
 
-driver.switch_to.window(driver.window_handles[-1])
-time.sleep(2)
-
-# Now click the Add to Cart button
-bc = driver.find_element(By.CLASS_NAME, 'QqFHMw')
-bc.click()
-
+# it will move to the new tab that opened after it randomaly click it's product[-1]-Represents a new tab or recent tab that open and we tell that selenium to move on to next tab
 driver.switch_to.window(driver.window_handles[-1])
 time.sleep(2)
 
